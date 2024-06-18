@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+html,
+body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: "fira mono", monospace;
+}
+
+:root {
+    --welcome-char: 13;
+    --welcome-duration: 1s;
+    /* font weights */
+    --fw-reg: 400;
+    --fw-med: 500;
+    --fw-bold: 700;
+    /* theme colors */
+    --window-accent: #0055e4;
+    --close-btn-inactive: hsl(0, 85%, 50%);
+    --close-btn-hovered: hsl(0, 100%, 61%);
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.col {
+    flex-direction: column;
+}
+
+/* hides everything except what I'm working on */
+body>*:not(#navbar):not(#welcome-section) {
+    display: none;
+}
+
+#welcome-section,
+#projects,
+#profile-link {
+    text-align: center;
+}
+
+#navbar {
+    position: relative;
+}
+
+.nav-list {
+    position: absolute;
+    padding: 0.8em;
+}
+
+.desktop-icon {
+    margin-bottom: 1em;
+    gap: 0.3em;
+    font-weight: var(--fw-med);
+}
+
+.desktop-icon svg {
+    width: 60px;
+    max-width: 100%;
+}
+
+/* window template */
+
+.window-container {
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%);
+    background-color: #101010;
+    color: #eee;
+    resize: both;
+    min-width: 300px;
+    min-height: fit-content;
+}
+
+.window-bar {
+    background-color: #eee;
+    border: 2px solid lightgray;
+    color: #101010;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.window-content {
+    text-align: left;
+    padding-inline: 0.5em;
+    padding-bottom: 1em;
+}
+
+/* .welcome-title {
+    font-size: 25px;
+    color: transparent;
+    font-weight: normal;
+    background:
+        linear-gradient(-90deg, #eee 5px, #0000 0) 10px 0,
+        linear-gradient(#eee 0 0) 0 0;
+    background-size: calc(var(--welcome-char)*1ch) 200%;
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-clip: padding-box, text;
+    animation:
+        cursor .7s infinite steps(1),
+        typewriter var(--welcome-duration) steps(var(--welcome-char)) forwards,
+        delete var(--welcome-duration) steps(var(--welcome-char)) 3s forwards;
+} */
+
+/* ~~~~~~~~~~~TESTING ZONE~~~~~~~~~~~ */
+
+[data-typewriter] {
+    width: fit-content;
+    height: 26px;
+    border-right: 2px solid transparent;
+}
+
+[data-typewriter]:not(.typing) {
+    animation: blink-cursor 1.1s step-end infinite;
+}
+
+@keyframes blink-cursor {
+
+    0%,
+    100% {
+        border-color: transparent;
+    }
+
+    50% {
+        border-color: white;
+    }
+}
+
+/* ~~~~~~~~~~~TESTING ZONE~~~~~~~~~~~ */
+
+.cmd-info {
+    font-size: 13px;
+    margin-bottom: 1em;
+}
+
+.mini-btn,
+.max-btn,
+.close-btn {
+    width: 20px;
+    aspect-ratio: 1;
+}
+
+@keyframes typewriter {
+    from {
+        background-size: 0 200%;
+    }
+}
+
+@keyframes delete {
+    to {
+        background-size: 0 200%;
+    }
+}
+
+@keyframes cursor {
+    50% {
+        background-position: 0 -100%, 0 0
+    }
+}
+
+@keyframes reveal {
+    to {
+        width: fit-content;
+        opacity: 1;
+    }
+}
+
+@keyframes hide {
+    to {
+        width: 0;
+        opacity: 0;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    body {
+        position: relative;
+    }
+
+    #navbar {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .nav-list {
+        display: flex;
+        justify-content: space-evenly;
+        gap: 0.3em;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+        width: 100%;
+    }
+
+    .nav-list li {
+        min-width: 33.3%;
+        max-width: 33.3%;
+        height: 85px;
+    }
+
+    .exe {
+        max-width: 100%;
+        overflow: hidden;
+        text-align: center;
+        text-overflow: ellipsis;
+    }
+
+    .nav-list li:hover .exe,
+    .nav-list li:focus .exe {
+        word-break: break-all;
+    }
+
+    .desktop-icon svg {
+        width: 50px;
+    }
+}
